@@ -2077,6 +2077,16 @@ https://sqlspreads.com/blog/temporal-tables-in-sql-server/
 https://www.geeksforgeeks.org/kdd-process-in-data-mining/
 
 
+# SQL Table Column Permission For a SQL User
+```sql
+REVOKE SELECT ON dbo.[User] TO MisDpt;
+
+GRANT SELECT ON OBJECT:: dbo.[User] (UserId, UserName, EmployeeId .........) TO MisDpt;
+
+DENY SELECT ON OBJECT::dbo.[User] (Password, ConfirmPassword, OldPassword ......) TO MisDpt
+```
+
+
 
 # LOG Scalation Query
 # Report on SQL Server Lock Escalation Settings for Optimized Concurrency Management
