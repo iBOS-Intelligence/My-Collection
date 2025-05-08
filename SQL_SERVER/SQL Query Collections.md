@@ -2076,7 +2076,14 @@ https://www.brentozar.com/sql-constantcare/
 https://sqlspreads.com/blog/temporal-tables-in-sql-server/
 https://www.geeksforgeeks.org/kdd-process-in-data-mining/
 
+# SQL Table Column Name Permission For SQL User
+```
+REVOKE SELECT ON dbo.[User] TO MisDpt;
 
+GRANT SELECT ON OBJECT:: dbo.[User] (UserId, UserName, EmployeeId, EmployeeName, MobileNumber, AccountId, AccountName,  Email, isMasterUser, isActive, ActionTime, ActionByName, ActionById, IsPosAdmin, IsExchange, IsItemDelete, IsSpecialDiscount, isAudit, isAuditEdit, isInvoiceEdit, isRePrint, isReturn, IsEcomUser, RoleId, RoleName, isAppUser, LastLoginTime, LoginFailedCount, IsBlock, isItemRowEdit, UserTypeId, UserTypeName, IsStockHideInSales, EmployeeLoginId) TO MisDpt;
+
+DENY SELECT ON OBJECT::dbo.[User] (Password, ConfirmPassword, OldPassword) TO MisDpt
+```
 
 # LOG Scalation Query
 # Report on SQL Server Lock Escalation Settings for Optimized Concurrency Management
