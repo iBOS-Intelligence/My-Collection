@@ -2084,4 +2084,28 @@ https://www.geeksforgeeks.org/kdd-process-in-data-mining/
 ![image](https://github.com/user-attachments/assets/6ef6017b-02cc-4271-9cee-7549dddfd20f)
 
 
+# Report on which tables data was inserted in the last 5 minutes
+```
+DECLARE @SQL NVARCHAR(MAX) = '';
+DECLARE @Now DATETIME = GETDATE();
+DECLARE @FiveMinAgo DATETIME = DATEADD(MINUTE, -10, @Now);
+
+-- Collect SQL commands into one long NVARCHAR(MAX) string
+SELECT @SQL = STRING_AGG(
+    CAST('
+IF EXISTS (SELECT 1 FROM [' + TABLE_SCHEMA + '].[' + TABLE_NAME + '] 
+           WHERE [' + COLUMN_NAME + '] >= ''' + CONVERT(VARCHAR, @FiveMinAgo, 121) + ''')
+PRINT ''' + TABLE_SCHEMA + '.' + TABLE_NAME + '''' 
+    AS NVARCHAR(MAX)), CHAR(13))
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE COLUMN_NAME IN ('ActionTime', 'TransactionDate', 'LastActionDatetime', 'CreatedOn', 'InsertedOn')
+  AND DATA_TYPE IN ('datetime', 'date', 'smalldatetime');
+
+-- Execute the dynamic SQL
+EXEC sp_executesql @SQL;
+
+
+
+```
+
 # ----END----
