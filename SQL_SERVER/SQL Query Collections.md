@@ -2084,4 +2084,27 @@ https://www.geeksforgeeks.org/kdd-process-in-data-mining/
 ![image](https://github.com/user-attachments/assets/6ef6017b-02cc-4271-9cee-7549dddfd20f)
 
 
+
+# SQL User Wise Table Encrypted
+
+```sql
+ALTER TABLE Inventory_Transaction_Types 
+ALTER COLUMN TransTypeID ADD MASKED WITH (FUNCTION = 'default()');
+
+ALTER TABLE Inventory_Transaction_Types 
+ALTER COLUMN Display_Name ADD MASKED WITH (FUNCTION = 'default()');
+
+ALTER TABLE Inventory_Transaction_Types 
+ALTER COLUMN Short_Description ADD MASKED WITH (FUNCTION = 'default()');
+
+ALTER TABLE Inventory_Transaction_Types 
+ALTER COLUMN Stock_Impact ADD MASKED WITH (FUNCTION = 'default()');
+
+ALTER TABLE Inventory_Transaction_Types 
+ALTER COLUMN Is_Active ADD MASKED WITH (FUNCTION = 'default()');
+
+```
+
+
+
 # ----END----
